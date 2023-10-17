@@ -1,5 +1,5 @@
 # /docker/python/requirements.txt
-
+pymongo
 fastapi
 uvicorn
-pymongo
+python-decouple

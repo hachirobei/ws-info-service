@@ -6,7 +6,7 @@ config = Config('.env')  # point to the local .env file
 
 app = FastAPI()
 
-MONGO_URL = config("MONGO_URL", default="mongo")
+MONGO_URL = config("MONGO_URL", default="mongo-info-ws")
 
 client = MongoClient(MONGO_URL, 27017)
 db = client.test_database

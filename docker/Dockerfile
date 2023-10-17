@@ -1,10 +1,15 @@
 # docker/Dockerfile
 
-# Use an official FastAPI-Uvicorn base image
-FROM tiangolo/uvicorn-gunicorn-fastapi:latest
+# Use the official Python base image
+FROM python:3.12
+
+LABEL maintainer="Muhammad Hafizoddin <hachirobei93@gmail.com>"
 
 # Set the working directory inside the container
 WORKDIR /usr/src/app
+
+# Set the PYTHONPATH
+ENV PYTHONPATH=/usr/src/app:$PYTHONPATH
 
 # Copy the requirements.txt from the docker/python folder into the container
 COPY docker/python/requirements.txt .
@@ -13,7 +18,7 @@ COPY docker/python/requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the FastAPI application and its .env file into the container
-COPY app/ .
+COPY app/ /usr/src/app/
 
 # Expose port 80 for Uvicorn
 EXPOSE 80
