@@ -1,0 +1,5 @@
+# /docker/python/requirements.txt
+
+fastapi
+uvicorn
+pymongo
