@@ -12,13 +12,13 @@ WORKDIR /usr/src/app
 ENV PYTHONPATH=/usr/src/app:$PYTHONPATH
 
 # Copy the requirements.txt from the docker/python folder into the container
-COPY docker/python/requirements.txt .
+COPY ./docker_ws/python/requirements.txt .
 
 # Install the dependencies
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the FastAPI application and its .env file into the container
-COPY app/ /usr/src/app/
+COPY . /usr/src/app/
 
 # Expose port 80 for Uvicorn
 EXPOSE 80
