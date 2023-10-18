@@ -1,15 +1,15 @@
 from fastapi import FastAPI
 from pymongo import MongoClient
-from decouple import Config
-
-config = Config('.env')  # point to the local .env file
+from decouple import config
 
 app = FastAPI()
 
-MONGO_URL = config("MONGO_URL", default="mongo-info-ws")
+# If MONGO_URL is not found in .env, it will default to mongodb://localhost:27017/test_database
+MONGO_URL = config("MONGO_URL", default="mongodb://localhost:27017/test_database")
 
-client = MongoClient(MONGO_URL, 27017)
-db = client.test_database
+client = MongoClient(MONGO_URL)
+db_name = "ws-info"
+db = client[db_name]
 
 @app.get("/")
 def read_root():
